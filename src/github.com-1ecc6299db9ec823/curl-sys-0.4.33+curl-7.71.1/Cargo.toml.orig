@@ -1,0 +1,53 @@
+[package]
+name = "curl-sys"
+version = "0.4.33+curl-7.71.1"
+authors = ["Alex Crichton <alex@alexcrichton.com>"]
+links = "curl"
+build = "build.rs"
+license = "MIT"
+repository = "https://github.com/alexcrichton/curl-rust"
+description = "Native bindings to the libcurl library"
+documentation = "https://docs.rs/curl-sys"
+categories = ["external-ffi-bindings"]
+
+[badges]
+travis-ci = { repository = "alexcrichton/curl-rust" }
+appveyor = { repository = "alexcrichton/curl-rust" }
+
+[lib]
+name = "curl_sys"
+path = "lib.rs"
+
+[dependencies]
+libz-sys = "1.0.18"
+libc = "0.2.2"
+libnghttp2-sys = { optional = true, version = "0.1.3" }
+
+[dependencies.mesalink]
+version = "1.1.0-cratesio"
+optional = true
+default-features = false
+features = ["client_apis", "error_strings", "tls13", "aesgcm", "chachapoly", "x25519", "ecdh", "ecdsa", "verifier"]
+
+[target.'cfg(all(unix, not(target_os = "macos")))'.dependencies]
+openssl-sys = { version = "0.9", optional = true }
+
+[target.'cfg(windows)'.dependencies]
+winapi = { version = "0.3", features = ["winsock2", "ws2def"] }
+
+[target.'cfg(target_env = "msvc")'.build-dependencies]
+vcpkg = "0.2"
+
+[build-dependencies]
+pkg-config = "0.3.3"
+cc = "1.0"
+
+[features]
+default = ["ssl"]
+ssl = ["openssl-sys"]
+http2 = ["libnghttp2-sys"]
+static-curl = []
+static-ssl = ["openssl-sys/vendored"]
+spnego = []
+force-system-lib-on-osx = []
+protocol-ftp = []

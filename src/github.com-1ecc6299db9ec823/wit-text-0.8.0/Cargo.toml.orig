@@ -1,0 +1,31 @@
+[package]
+name = "wit-text"
+version = "0.8.0"
+authors = ["Alex Crichton <alex@alexcrichton.com>"]
+edition = "2018"
+license = "Apache-2.0 WITH LLVM-exception"
+repository = "https://github.com/bytecodealliance/wasm-interface-types"
+readme = "README.md"
+description = """
+Parser for the text format of WebAssembly Interface Types
+"""
+
+[dependencies]
+anyhow = "1.0"
+wast = "21.0"
+wit-writer = { path = "../writer", version = "0.2.0" }
+
+[dev-dependencies]
+getopts = "0.2"
+test-helpers = { path = "../test-helpers" }
+walrus = "0.18.0"
+wasmparser = "0.59"
+wat = "1.0.10"
+wit-parser = { path = "../parser" }
+wit-printer = { path = "../printer" }
+wit-validator = { path = "../validator" }
+wit-walrus = { path = "../walrus" }
+
+[[test]]
+name = "all"
+harness = false

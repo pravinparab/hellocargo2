@@ -1,0 +1,29 @@
+[package]
+name = "cargo_metadata"
+version = "0.8.2"
+authors = ["Oliver Schneider <git-spam-no-reply9815368754983@oli-obk.de>"]
+repository = "https://github.com/oli-obk/cargo_metadata"
+description = "structured access to the output of `cargo metadata`"
+license = "MIT"
+readme = "README.md"
+
+[dependencies]
+serde = "1.0.79"
+serde_derive = "1.0.79"
+serde_json = "1.0.1"
+
+[dependencies.semver]
+features = ["serde"]
+version = "0.9"
+
+[features]
+default = []
+
+[dev-dependencies]
+clap = "2.26.0"
+docopt = "1.0.2"
+structopt = "0.2.10"
+
+[package.metadata.cargo_metadata_test]
+some_field = true
+other_field = "foo"
