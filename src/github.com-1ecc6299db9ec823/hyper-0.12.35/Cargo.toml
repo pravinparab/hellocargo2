@@ -152,7 +152,7 @@ version = "0.4.1"
 version = "0.4"
 
 [dependencies.net2]
-version = "0.2.32"
+version = "0.2.36"
 optional = true
 
 [dependencies.time]
